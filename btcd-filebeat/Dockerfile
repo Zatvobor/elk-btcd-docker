@@ -18,6 +18,10 @@ ADD ./filebeat.yml /etc/filebeat/filebeat.yml
 RUN mkdir -p /etc/pki/tls/certs
 ADD ./logstash-beats.crt /etc/pki/tls/certs/logstash-beats.crt
 
+# Start shell
+ADD ./start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
 ENV HOME /btcd
 RUN /usr/sbin/useradd -s /bin/bash -m -d /btcd btcd
 
@@ -50,6 +54,4 @@ VOLUME /var/lib/btcd
 EXPOSE 8333
 
 USER btcd
-ADD ./start.sh /usr/local/bin/start.sh
-RUN chmod +x /usr/local/bin/start.sh
 CMD [ "/usr/local/bin/start.sh" ]
