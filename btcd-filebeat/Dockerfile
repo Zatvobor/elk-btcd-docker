@@ -6,6 +6,18 @@ RUN apt-get update -qq \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN cd /tmp \
+ && curl -L -O https://download.elastic.co/beats/filebeat/filebeat_1.0.1_amd64.deb \
+ && dpkg -i filebeat_1.0.1_amd64.deb \
+ && rm filebeat_1.0.1_amd64.deb
+
+# config file
+ADD ./filebeat.yml /etc/filebeat/filebeat.yml
+
+# CA cert
+RUN mkdir -p /etc/pki/tls/certs
+ADD ./logstash-beats.crt /etc/pki/tls/certs/logstash-beats.crt
+
 ENV HOME /btcd
 RUN /usr/sbin/useradd -s /bin/bash -m -d /btcd btcd
 
@@ -33,18 +45,6 @@ RUN cd /btcd \
 
 ### configure BTCD
 ADD ./btcd.conf /etc/btcd/btcd.conf
-
-RUN cd /tmp \
- && curl -L -O https://download.elastic.co/beats/filebeat/filebeat_1.0.1_amd64.deb \
- && dpkg -i filebeat_1.0.1_amd64.deb \
- && rm filebeat_1.0.1_amd64.deb
-
-# config file
-ADD ./filebeat.yml /etc/filebeat/filebeat.yml
-
-# CA cert
-RUN mkdir -p /etc/pki/tls/certs
-ADD ./logstash-beats.crt /etc/pki/tls/certs/logstash-beats.crt
 
 VOLUME /var/lib/btcd
 EXPOSE 8333
