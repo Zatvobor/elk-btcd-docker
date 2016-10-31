@@ -34,16 +34,17 @@ RUN cd /btcd \
 ### configure BTCD
 ADD ./btcd.conf /etc/btcd/btcd.conf
 
-RUN curl -L -O https://download.elastic.co/beats/filebeat/filebeat_1.0.1_amd64.deb \
+RUN cd /tmp \
+ && curl -L -O https://download.elastic.co/beats/filebeat/filebeat_1.0.1_amd64.deb \
  && dpkg -i filebeat_1.0.1_amd64.deb \
  && rm filebeat_1.0.1_amd64.deb
 
 # config file
-ADD filebeat.yml /etc/filebeat/filebeat.yml
+ADD ./filebeat.yml /etc/filebeat/filebeat.yml
 
 # CA cert
 RUN mkdir -p /etc/pki/tls/certs
-ADD logstash-beats.crt /etc/pki/tls/certs/logstash-beats.crt
+ADD ./logstash-beats.crt /etc/pki/tls/certs/logstash-beats.crt
 
 VOLUME /var/lib/btcd
 EXPOSE 8333
