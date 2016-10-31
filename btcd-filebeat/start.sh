@@ -1,0 +1,6 @@
+#!/bin/bash
+
+curl -XPUT 'http://elk:9200/_template/filebeat?pretty' -d@/etc/filebeat/filebeat.template.json
+
+/etc/init.d/filebeat start
+/btcd/btcd --configfile=/etc/btcd/btcd.conf
