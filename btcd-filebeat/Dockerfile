@@ -54,4 +54,4 @@ VOLUME /var/lib/btcd
 EXPOSE 8333
 
 USER btcd
-CMD [ "/usr/local/bin/start.sh" ]
+CMD /bin/sh -c "/usr/local/bin/start.sh"
