@@ -12,6 +12,6 @@ filebeat:
   prospectors:
     -
       paths:
-        - /var/log/syslog
-        - /var/log/auth.log
-      document_type: syslog
+        - /var/lib/btcd/mainnet/btcd.log
+      input_type: log
+      document_type: beat

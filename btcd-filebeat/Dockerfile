@@ -23,9 +23,7 @@ ADD ./start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
 
 ENV HOME /btcd
-RUN /usr/sbin/useradd -s /bin/bash -m -d /btcd btcd
-
-RUN chown btcd:btcd -R /btcd
+RUN mkdir /btcd
 
 ENV GOLANG_VERSION 1.7.1
 ENV GOLANG_DOWNLOAD_URL https://storage.googleapis.com/golang/go$GOLANG_VERSION.linux-amd64.tar.gz
@@ -38,7 +36,6 @@ RUN cd /tmp \
   && curl -sSL "$GOLANG_DOWNLOAD_URL" -o go$GOLANG_VERSION.linux-amd64.tar.gz \
   && tar -C /usr/local -xzf go$GOLANG_VERSION.linux-amd64.tar.gz
 
-USER btcd
 ENV PATH $HOME/bin:$PATH
 RUN cd /btcd \
   && go get -u github.com/Masterminds/glide \
@@ -53,5 +50,4 @@ ADD ./btcd.conf /etc/btcd/btcd.conf
 VOLUME /var/lib/btcd
 EXPOSE 8333
 
-USER btcd
 CMD /bin/sh -c "/usr/local/bin/start.sh"
