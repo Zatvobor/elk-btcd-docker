@@ -7,7 +7,7 @@ RUN apt-get update -qq \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Setup filebeat
-ENV FILEBEAT_VERSION 1.0.1_amd64
+ENV FILEBEAT_VERSION 1.3.1_amd64
 ENV FILEBEAT_PACKAGE filebeat_$FILEBEAT_VERSION.deb
 ENV FILEBEAT_DOWNLOAD_URL https://download.elastic.co/beats/filebeat/$FILEBEAT_PACKAGE
 RUN cd /tmp \
@@ -58,4 +58,4 @@ VOLUME /var/lib/btcd
 EXPOSE 8333
 
 
-CMD /bin/sh -c "/usr/local/bin/start.sh"
+CMD '/usr/local/bin/start.sh'

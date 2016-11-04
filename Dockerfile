@@ -116,6 +116,7 @@ ADD ./logstash-beats.key /etc/pki/tls/private/logstash-beats.key
 
 # filters
 ADD ./02-beats-input.conf /etc/logstash/conf.d/02-beats-input.conf
+ADD ./03-beats-filter.conf /etc/logstash/conf.d/03-beats-filter.conf
 ADD ./30-output.conf /etc/logstash/conf.d/30-output.conf
 
 # patterns
@@ -141,4 +142,4 @@ RUN chmod +x /usr/local/bin/start.sh
 EXPOSE 5601 9200 9300 5044
 VOLUME /var/lib/elasticsearch
 
-CMD /bin/sh -c "/usr/local/bin/start.sh"
+CMD '/usr/local/bin/start.sh'
