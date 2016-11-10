@@ -13,7 +13,7 @@ filebeat:
     -
       paths:
         - /var/lib/btcd/mainnet/btcd.log
-      include_lines: ['BMGR']
+      include_lines: ['BMGR', 'CHAN', 'TXMP']
       tail_files: true
       input_type: log
       document_type: beat
