@@ -61,6 +61,16 @@ network.host: 0.0.0.0
 # For more information, see the documentation at:
 # <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html>
 #
+# ---------------------------------- Http -----------------------------------
+#
+http.cors.enabled : true
+http.cors.allow-origin : "*"
+http.cors.allow-methods : OPTIONS, HEAD, GET, POST, PUT, DELETE
+http.cors.allow-headers : X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Accept,Origin
+#
+# For more information, see the documentation at:
+# <https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html>
+#
 # ---------------------------------- Gateway -----------------------------------
 #
 # Block initial recovery after a full cluster restart until N nodes are started:
