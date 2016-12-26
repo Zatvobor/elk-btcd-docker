@@ -27,4 +27,4 @@ ADD ./start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
 
 
-CMD '/etc/init.d/filebeat start'
+CMD /etc/init.d/filebeat start

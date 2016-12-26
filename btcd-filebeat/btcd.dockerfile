@@ -37,4 +37,4 @@ ADD ./btcd.conf /etc/btcd/btcd.conf
 VOLUME /var/lib/btcd
 EXPOSE 8333
 
-CMD 'btcd --configfile=/etc/btcd/btcd.conf'
+CMD btcd --configfile=/etc/btcd/btcd.conf
