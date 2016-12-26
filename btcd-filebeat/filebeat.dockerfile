@@ -22,9 +22,5 @@ ADD ./filebeat.yml /etc/filebeat/filebeat.yml
 RUN mkdir -p /etc/pki/tls/certs
 ADD ./logstash-beats.crt /etc/pki/tls/certs/logstash-beats.crt
 
-## start shell script
-ADD ./start.sh /usr/local/bin/start.sh
-RUN chmod +x /usr/local/bin/start.sh
-
 
 CMD /etc/init.d/filebeat start
