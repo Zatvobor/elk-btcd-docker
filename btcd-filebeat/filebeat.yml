@@ -1,3 +1,11 @@
+logging:
+  to_files: true
+  files:
+    path: /var/log/filebeat/
+    name: filebeat.log
+    rotateeverybytes: 10485760
+  level: info
+
 output:
   logstash:
     enabled: true

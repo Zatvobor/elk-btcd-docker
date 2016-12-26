@@ -22,4 +22,4 @@ RUN mkdir -p /etc/pki/tls/certs
 ADD ./logstash-beats.crt /etc/pki/tls/certs/logstash-beats.crt
 
 
-CMD /etc/init.d/filebeat start
+CMD /etc/init.d/filebeat start && tail --retry --follow /var/log/filebeat/filebeat.log
