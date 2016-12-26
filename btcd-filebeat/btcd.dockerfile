@@ -1,5 +1,4 @@
 FROM phusion/baseimage
-MAINTAINER Oleksiy Zatvornitskyy <oleksiy.zatvornitskyy@bitfury.com>
 
 RUN apt-get update -qq \
   && apt-get install -y curl git \
